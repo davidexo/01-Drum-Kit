@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="js.js"></script>
+</head>
+<body>
+
+<h1>Drum Kit</h1>
+<h3>Javascript Day 01</h3>
+
+
+<div class="drum-buttons">
+  <div class="key" data-key="65">
+    <kbd>A</kbd>
+    <span class="sound">
+      Clap
+    </span>
+  </div>
+
+  <div class="key" data-key="83">
+    <kbd>S</kbd>
+    <span class="sound">
+      Hihat
+    </span>
+  </div>
+
+  <div class="key" data-key="68">
+    <kbd>D</kbd>
+    <span class="sound">
+      Kick
+    </span>
+  </div>
+
+  <div class="key" data-key="70">
+    <kbd>F</kbd>
+    <span class="sound">
+      Openhat
+    </span>
+  </div>
+
+  <div class="key" data-key="71">
+    <kbd>G</kbd>
+    <span class="sound">
+      Boom
+    </span>
+  </div>
+
+  <div class="key" data-key="72">
+    <kbd>H</kbd>
+    <span class="sound">
+      Ride
+    </span>
+  </div>
+
+  <div class="key" data-key="74">
+    <kbd>J</kbd>
+    <span class="sound">
+      Snare
+    </span>
+  </div>
+
+  <div class="key" data-key="75">
+    <kbd>K</kbd>
+    <span class="sound">
+      Tom
+    </span>
+  </div>
+
+  <div class="key" data-key="76">
+    <kbd>L</kbd>
+    <span class="sound">
+      Yeah
+    </span>
+  </div>
+</div>
+
+
+<audio data-key="65" src="sound/clap.wav"></audio>
+<audio data-key="83" src="sound/clap.wav"></audio>
+<audio data-key="68" src="sound/clap.wav"></audio>
+<audio data-key="70" src="sound/clap.wav"></audio>
+<audio data-key="71" src="sound/clap.wav"></audio>
+<audio data-key="72" src="sound/clap.wav"></audio>
+<audio data-key="74" src="sound/clap.wav"></audio>
+<audio data-key="75" src="sound/clap.wav"></audio>
+<audio data-key="76" src="sound/clap.wav"></audio>
+
+
+<script>
+
+window.addEventListener("keydown", keySound);
+
+
+
+
+
+function keySound(e) {
+
+  // attribute selector using the custom data attribute (data-....)
+  // querySelector is looking for the first element with the given condition
+  // template strings for inserting the functions parameter (backticks needed)
+
+  const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+  const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+  if(!audio) return;
+  audio.currentTime = 0; // rewind sound to the start
+  audio.play();
+
+  //console.log(key);
+  key.classList.add('playing');
+
+}
+
+
+function removeTransition(e) {
+  if(e.propertyName != 'transform') return; // skip rest if the event e is not a transform event!
+  //console.log(e);
+  // in js "this" is always the object that a function was casted against.
+  // Therefore this is qual to the key that has trinsitioned
+  //console.log(this);
+  this.classList.remove('playing');
+
+}
+
+// scheinbar ist das Array der keys leer!!
+
+
+
+// forEach() is needed since you have to loop through arrays to check the spicific element
+// otherwise you would just listen on the array itself not its elements
+const keys = document.querySelectorAll('.key');
+console.log(keys);
+keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+
+keys.forEach(key => key.addEventListener('click', clickSound));
+
+function clickSound() {
+  const audio = document.querySelector(`audio[data-key="${this.dataset.key}"]`);
+  audio.currentTime = 0;
+  audio.play();
+  this.classList.add('playing');
+
+  //console.log(this);
+}
+
+
+</script>
+
+
+</body>
+</html>

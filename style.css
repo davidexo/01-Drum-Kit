@@ -1,0 +1,90 @@
+body {
+
+  font-family: "heebo", sans-serif;
+  background-color: #13132C;
+  padding: 3rem;
+
+}
+
+h1 {
+
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 0;
+
+}
+
+h3 {
+
+  margin-top: 0;
+  margin-bottom: 60px;
+  color: #777787;
+  font-weight: 400;
+  font-size: 1.4rem;
+
+
+}
+
+p {
+
+  margin-top: -2rem;
+  margin-bottom: 3rem;
+
+}
+
+.drum-buttons {
+}
+
+.key {
+
+  width: 80px;
+  height: 80px;
+  background-color: #282941;
+  color: #FD2D55;
+  padding: 2rem;
+  margin: 0.5rem;
+  float: left;
+  text-align: center;
+  transition: all 0.09s;
+  border-radius: 18px;
+  -webkit-user-select: none; /* Safari */
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
+
+}
+
+.playing {
+
+  transform: scale(1.1);
+  color: white;
+  background-color: #FD2D55;
+
+}
+
+
+
+kbd {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  text-align: center;
+
+}
+
+
+.sound {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: orange;
+  width: 100%;
+  margin-top: 12px;
+  color: #777787;
+  text-align: center;
+
+}
